@@ -29,7 +29,7 @@ class QueryInterceptor extends InterceptorsWrapper {
     RequestInterceptorHandler handler,
   ) async {
     options.queryParameters.removeWhere((key, value) => value == null);
-    options.headers.addEntries({'x-clien-keyt': clientKey}.entries);
+    // options.headers.addEntries({'x-clien-keyt': clientKey}.entries);
     // options.headers.addEntries(
     //   {'x-device-imei': DeviceInfoHelper.instance.uuid}.entries,
     // );

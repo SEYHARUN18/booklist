@@ -86,7 +86,7 @@ class __$$ProductResponseImplCopyWithImpl<$Res>
     Object? data = null,
   }) {
     return _then(_$ProductResponseImpl(
-      data: null == data
+      null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
               as List<ProductModel>,
@@ -97,15 +97,13 @@ class __$$ProductResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProductResponseImpl implements _ProductResponse {
-  const _$ProductResponseImpl({final List<ProductModel> data = const []})
-      : _data = data;
+  const _$ProductResponseImpl(final List<ProductModel> data) : _data = data;
 
   factory _$ProductResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductResponseImplFromJson(json);
 
   final List<ProductModel> _data;
   @override
-  @JsonKey()
   List<ProductModel> get data {
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
@@ -146,7 +144,7 @@ class _$ProductResponseImpl implements _ProductResponse {
 }
 
 abstract class _ProductResponse implements ProductResponse {
-  const factory _ProductResponse({final List<ProductModel> data}) =
+  const factory _ProductResponse(final List<ProductModel> data) =
       _$ProductResponseImpl;
 
   factory _ProductResponse.fromJson(Map<String, dynamic> json) =

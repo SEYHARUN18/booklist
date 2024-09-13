@@ -33,12 +33,11 @@ Route<T> myCustomRouteBuilder<T>(
           name: 'BookListPage',
           initial: true,
         ),
+        AutoRoute(
+          page: BookDetail,
+          name: 'BookDetailPage',
+        ),
       ],
-    ),
-    CustomRoute(
-      page: BookDetail,
-      name: 'BookDetailPage',
-      transitionsBuilder: TransitionsBuilders.slideBottom,
     ),
   ],
 )

@@ -35,15 +35,43 @@ class AppText extends StatelessWidget {
     this.configKey,
     this.scalable = true,
   });
-  factory AppText.headTitle(
+
+  factory AppText.title(
     String text, {
-    Color? color = AppColor.neutralWhite,
-    FontWeightType? fontWeight = FontWeightType.medium,
+    Color? color = AppColor.neutralBlack,
+    FontWeightType? fontWeight = FontWeightType.bold,
     bool scalable = true,
     String? configKey,
     TextAlign? textAlign,
     int? maxLines,
-    double? fontSize = 20.0,
+    double? fontSize = 18.0,
+    double? letterSpacing = 0,
+  }) {
+    return AppText._(
+      text,
+      textStyle: TextStyle(
+        fontWeight: fontWeight?.type(),
+        color: color,
+        fontSize: fontSize?.sp,
+        letterSpacing: letterSpacing?.sp,
+      ),
+      scalable: scalable,
+      configKey: configKey,
+      textAlign: textAlign,
+      maxLines: maxLines,
+      overflow: maxLines != null ? TextOverflow.ellipsis : null,
+    );
+  }
+
+  factory AppText.headTitle(
+    String text, {
+    Color? color = AppColor.neutralWhite,
+    FontWeightType? fontWeight = FontWeightType.bold,
+    bool scalable = true,
+    String? configKey,
+    TextAlign? textAlign,
+    int? maxLines,
+    double? fontSize = 38.0,
     double? letterSpacing = 0,
   }) {
     return AppText._(
@@ -64,7 +92,7 @@ class AppText extends StatelessWidget {
 
   factory AppText.subTitle(
     String text, {
-    Color? color = AppColor.neutralWhite,
+    Color? color = AppColor.neutralGreyLight,
     FontWeightType? fontWeight = FontWeightType.medium,
     bool scalable = true,
     String? configKey,
@@ -224,7 +252,7 @@ class AppText extends StatelessWidget {
 
   factory AppText.currency(
     String text, {
-    Color? color = AppColor.primaryDarkBlue,
+    Color? color = AppColor.neutralBlack,
     FontWeightType? fontWeight = FontWeightType.bold,
     bool scalable = true,
     String? configKey,

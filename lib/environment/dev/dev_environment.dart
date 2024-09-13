@@ -4,7 +4,7 @@ extension DevEnvironment on Environment {
   static Environment config() {
     return Environment(
       envName: 'dev',
-      apiBaseUrl: 'https://fakestoreapi.com/',
+      apiBaseUrl: 'https://fakestoreapi.com',
       secondApiBaseUrl: '',
       storageBaseUrl: '',
       iosClientKey: '',

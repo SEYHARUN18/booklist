@@ -1,4 +1,4 @@
-export 'app_primary_button.dart';
+export 'second_primary_button.dart';
 export 'assets/app_color.dart';
 export 'assets/app_metrics.dart';
 export 'assets/app_text.dart';

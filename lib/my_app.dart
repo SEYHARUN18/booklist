@@ -20,30 +20,20 @@ class MyApp extends HookWidget
   @override
   Widget build(BuildContext context) {
     final router = GetIt.instance<AppRouter>();
-
     useEffect(
       () {
         UiErrorUtils.subscribeToSnackBarStream(context, globalSnackBarSubject);
         return () {};
       },
     );
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => BookListBloc(
-            type: productRepository,
-          ),
-        ),
-      ],
-      child: MaterialApp.router(
-        title: 'Example Project',
-        routerDelegate: AutoRouterDelegate(router),
-        debugShowCheckedModeBanner: false,
-        routeInformationParser: router.defaultRouteParser(),
-        // builder: (context, child) {
-        //   return child;
-        // },
-      ),
-    );
+    return BlocProvider(
+        create: (_) => BookListBloc(
+              type: productRepository,
+            ),
+        child: MaterialApp.router(
+          routerDelegate: AutoRouterDelegate(router),
+          debugShowCheckedModeBanner: false,
+          routeInformationParser: router.defaultRouteParser(),
+        ));
   }
 }

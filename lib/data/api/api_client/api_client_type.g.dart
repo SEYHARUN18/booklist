@@ -55,19 +55,19 @@ class _APIClientType implements APIClientType {
   }
 
   @override
-  Future<ProductResponse> getProductList() async {
+  Future<List<ProductModel>> getProductList() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ProductResponse>(Options(
+    final _options = _setStreamType<List<ProductModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          'products/10',
+          '/products?limit=10',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -76,10 +76,12 @@ class _APIClientType implements APIClientType {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ProductResponse _value;
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<ProductModel> _value;
     try {
-      _value = ProductResponse.fromJson(_result.data!);
+      _value = _result.data!
+          .map((dynamic i) => ProductModel.fromJson(i as Map<String, dynamic>))
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

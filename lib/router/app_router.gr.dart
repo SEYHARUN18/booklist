@@ -16,8 +16,8 @@ import 'package:auto_route/empty_router_widgets.dart' as _i1;
 import 'package:flutter/material.dart' as _i5;
 
 import '../domain/model/product_model/product_model.dart' as _i6;
-import '../presentation/book_detail.dart' as _i2;
-import '../presentation/book_list.dart' as _i3;
+import '../presentation/book_detail.dart' as _i3;
+import '../presentation/book_list.dart' as _i2;
 
 class AppRouter extends _i4.RootStackRouter {
   AppRouter([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])
@@ -31,23 +31,20 @@ class AppRouter extends _i4.RootStackRouter {
         child: const _i1.EmptyRouterPage(),
       );
     },
-    BookDetailPage.name: (routeData) {
-      final args = routeData.argsAs<BookDetailPageArgs>();
-      return _i4.CustomPage<dynamic>(
-        routeData: routeData,
-        child: _i2.BookDetail(
-          key: args.key,
-          productModel: args.productModel,
-        ),
-        transitionsBuilder: _i4.TransitionsBuilders.slideBottom,
-        opaque: true,
-        barrierDismissible: false,
-      );
-    },
     BookListPage.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i3.BookList(),
+        child: const _i2.BookList(),
+      );
+    },
+    BookDetailPage.name: (routeData) {
+      final args = routeData.argsAs<BookDetailPageArgs>();
+      return _i4.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: _i3.BookDetail(
+          key: args.key,
+          productModel: args.productModel,
+        ),
       );
     },
   };
@@ -62,13 +59,14 @@ class AppRouter extends _i4.RootStackRouter {
               BookListPage.name,
               path: '',
               parent: AuthRouter.name,
-            )
+            ),
+            _i4.RouteConfig(
+              BookDetailPage.name,
+              path: 'book-detail',
+              parent: AuthRouter.name,
+            ),
           ],
-        ),
-        _i4.RouteConfig(
-          BookDetailPage.name,
-          path: '/book-detail',
-        ),
+        )
       ];
 }
 
@@ -86,14 +84,26 @@ class AuthRouter extends _i4.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.BookDetail]
+/// [_i2.BookList]
+class BookListPage extends _i4.PageRouteInfo<void> {
+  const BookListPage()
+      : super(
+          BookListPage.name,
+          path: '',
+        );
+
+  static const String name = 'BookListPage';
+}
+
+/// generated route for
+/// [_i3.BookDetail]
 class BookDetailPage extends _i4.PageRouteInfo<BookDetailPageArgs> {
   BookDetailPage({
     _i5.Key? key,
     required _i6.ProductModel productModel,
   }) : super(
           BookDetailPage.name,
-          path: '/book-detail',
+          path: 'book-detail',
           args: BookDetailPageArgs(
             key: key,
             productModel: productModel,
@@ -117,16 +127,4 @@ class BookDetailPageArgs {
   String toString() {
     return 'BookDetailPageArgs{key: $key, productModel: $productModel}';
   }
-}
-
-/// generated route for
-/// [_i3.BookList]
-class BookListPage extends _i4.PageRouteInfo<void> {
-  const BookListPage()
-      : super(
-          BookListPage.name,
-          path: '',
-        );
-
-  static const String name = 'BookListPage';
 }

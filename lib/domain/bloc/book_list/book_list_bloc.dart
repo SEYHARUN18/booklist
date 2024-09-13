@@ -1,10 +1,11 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:book_list/data/repository/product/product_type.dart';
 import 'package:book_list/my_app.dart';
 import 'package:book_list/utils/network_error_handler.dart';
-import 'package:book_list/utils/utils.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -24,11 +25,10 @@ class BookListBloc extends Bloc<BookListEvent, BookListState> {
     Emitter<BookListState> emit,
   ) async {
     try {
-      LoadingModal.show();
-      final getProfileResponse = await type.getProDuctList();
-
-      emit(BookListState.success(data: getProfileResponse.data));
+      final repsonse = await type.getProDuctList();
+      emit(BookListState.success(data: repsonse));
     } on DioException catch (e) {
+      log(e.toString());
       final NetworkErrorHandler networkErrorHandler = NetworkErrorHandler(e);
       globalSnackBarSubject
           .add({'message': networkErrorHandler.exec().description});
@@ -36,8 +36,6 @@ class BookListBloc extends Bloc<BookListEvent, BookListState> {
     } catch (e) {
       globalSnackBarSubject.add({'message': e.toString()});
       emit(const BookListState.bookFailed());
-    } finally {
-      LoadingModal.hide();
     }
   }
 }

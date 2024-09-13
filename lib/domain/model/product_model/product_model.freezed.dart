@@ -20,10 +20,12 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductModel {
+  int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  int? get statusCode => throw _privateConstructorUsedError;
-  bool get isVisible => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
+  double get price => throw _privateConstructorUsedError;
+  String get category => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,7 +40,12 @@ abstract class $ProductModelCopyWith<$Res> {
       _$ProductModelCopyWithImpl<$Res, ProductModel>;
   @useResult
   $Res call(
-      {String title, String description, int? statusCode, bool isVisible});
+      {int id,
+      String title,
+      String description,
+      String image,
+      double price,
+      String category});
 }
 
 /// @nodoc
@@ -54,12 +61,18 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? description = null,
-    Object? statusCode = freezed,
-    Object? isVisible = null,
+    Object? image = null,
+    Object? price = null,
+    Object? category = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -68,14 +81,18 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      statusCode: freezed == statusCode
-          ? _value.statusCode
-          : statusCode // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isVisible: null == isVisible
-          ? _value.isVisible
-          : isVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -89,7 +106,12 @@ abstract class _$$ProductModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String title, String description, int? statusCode, bool isVisible});
+      {int id,
+      String title,
+      String description,
+      String image,
+      double price,
+      String category});
 }
 
 /// @nodoc
@@ -103,12 +125,18 @@ class __$$ProductModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? description = null,
-    Object? statusCode = freezed,
-    Object? isVisible = null,
+    Object? image = null,
+    Object? price = null,
+    Object? category = null,
   }) {
     return _then(_$ProductModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -117,14 +145,18 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      statusCode: freezed == statusCode
-          ? _value.statusCode
-          : statusCode // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isVisible: null == isVisible
-          ? _value.isVisible
-          : isVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -133,28 +165,34 @@ class __$$ProductModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProductModelImpl implements _ProductModel {
   _$ProductModelImpl(
-      {this.title = '',
+      {required this.id,
+      this.title = '',
       required this.description,
-      this.statusCode,
-      this.isVisible = false});
+      required this.image,
+      this.price = 0,
+      required this.category});
 
   factory _$ProductModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductModelImplFromJson(json);
 
+  @override
+  final int id;
   @override
   @JsonKey()
   final String title;
   @override
   final String description;
   @override
-  final int? statusCode;
+  final String image;
   @override
   @JsonKey()
-  final bool isVisible;
+  final double price;
+  @override
+  final String category;
 
   @override
   String toString() {
-    return 'ProductModel(title: $title, description: $description, statusCode: $statusCode, isVisible: $isVisible)';
+    return 'ProductModel(id: $id, title: $title, description: $description, image: $image, price: $price, category: $category)';
   }
 
   @override
@@ -162,19 +200,20 @@ class _$ProductModelImpl implements _ProductModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.statusCode, statusCode) ||
-                other.statusCode == statusCode) &&
-            (identical(other.isVisible, isVisible) ||
-                other.isVisible == isVisible));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.category, category) ||
+                other.category == category));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, title, description, statusCode, isVisible);
+      Object.hash(runtimeType, id, title, description, image, price, category);
 
   @JsonKey(ignore: true)
   @override
@@ -192,22 +231,28 @@ class _$ProductModelImpl implements _ProductModel {
 
 abstract class _ProductModel implements ProductModel {
   factory _ProductModel(
-      {final String title,
+      {required final int id,
+      final String title,
       required final String description,
-      final int? statusCode,
-      final bool isVisible}) = _$ProductModelImpl;
+      required final String image,
+      final double price,
+      required final String category}) = _$ProductModelImpl;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
       _$ProductModelImpl.fromJson;
 
   @override
+  int get id;
+  @override
   String get title;
   @override
   String get description;
   @override
-  int? get statusCode;
+  String get image;
   @override
-  bool get isVisible;
+  double get price;
+  @override
+  String get category;
   @override
   @JsonKey(ignore: true)
   _$$ProductModelImplCopyWith<_$ProductModelImpl> get copyWith =>

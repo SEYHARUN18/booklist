@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:book_list/data/api/response/product_response/product_response.dart';
+import 'package:book_list/domain/model/product_model/product_model.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -12,8 +12,8 @@ abstract class APIClientType {
   @GET('/health-check')
   Future<String> getHealthCheck();
 
-  @GET('products/10')
-  Future<ProductResponse> getProductList();
+  @GET('/products?limit=10')
+  Future<List<ProductModel>> getProductList();
 
   // uploadImage
   // @POST('/uploadImage')

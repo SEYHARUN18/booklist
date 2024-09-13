@@ -25,7 +25,7 @@ class PrimaryButtonWidget extends StatelessWidget {
           backgroundColor: colors,
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppMetric.borderRadius),
+            borderRadius: BorderRadius.circular(AppMetric.borderRadius * 2),
           ),
         ),
         onPressed: onPressed,
